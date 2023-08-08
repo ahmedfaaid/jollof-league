@@ -1,0 +1,14 @@
+version: '3.9'
+
+services:
+  mongodb:
+    container_name: jollof_league
+    image: mongo:latest
+    ports:
+      - 27017:27017
+    volumes:
+      - ./db/mongo:/data/db
+    environment:
+      - MONGO_INITDB_DATABASE=jollof-league
+# volumes:
+#   db/mongo:
