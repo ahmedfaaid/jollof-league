@@ -4,9 +4,9 @@ use dotenv::dotenv;
 
 use mongodb::{
   bson::{extjson::de::Error, oid::ObjectId, doc},
-  results::InsertOneResult,
   sync::{Client, Collection}
 };
+use rocket::serde::json::Json;
 use crate::models::user_model::User;
 
 pub struct MongoRepo {
@@ -26,7 +26,7 @@ impl MongoRepo {
     MongoRepo { col }
   }
 
-  pub fn create_user(&self, new_user: User) -> Result<InsertOneResult, Error> {
+  pub fn create_user(&self, new_user: User) -> Result<Json<User>, Error> {
     let new_doc = User {
       _id: None,
       first_name: new_user.first_name,
@@ -34,8 +34,15 @@ impl MongoRepo {
       email: new_user.email,
       phone_number: new_user.phone_number
     };
-    let user = self.col.insert_one(new_doc, None).ok().expect("Error creating user");
-    Ok(user)
+    let inserted_user = self.col.insert_one(&new_doc, None).ok().expect("Error creating user");
+    let new_user = User {
+      _id: inserted_user.inserted_id.as_object_id(),
+      first_name: new_doc.first_name,
+      last_name: new_doc.last_name,
+      email: new_doc.email,
+      phone_number: new_doc.phone_number
+    };
+    Ok(Json(new_user))
   }
 
   pub fn get_user(&self, _id: &String) -> Result<User, Error> {

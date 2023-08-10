@@ -1,19 +1,18 @@
 use crate::{models::user_model::User, repository::mongodb_repo::MongoRepo};
-use mongodb::results::InsertOneResult;
 use rocket::{http::Status, serde::json::Json, State};
 
 #[post("/user", data="<new_user>")]
-pub fn create_user(db: &State<MongoRepo>, new_user: Json<User>) -> Result<Json<InsertOneResult>, Status> {
+pub fn create_user(db: &State<MongoRepo>, new_user: Json<User>) -> Result<Json<User>, Status> {
   let data = User {
     _id: None,
     first_name: new_user.first_name.to_owned(),
     last_name: new_user.last_name.to_owned(),
     email: new_user.email.to_owned(),
-    phone_number: new_user.email.to_owned()
+    phone_number: new_user.phone_number.to_owned()
   };
   let user_detail = db.create_user(data);
   match user_detail {
-    Ok(user) => Ok(Json(user)),
+    Ok(user) => Ok(user),
     Err(_) => Err(Status::InternalServerError)
   }
 }
