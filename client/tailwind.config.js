@@ -2,7 +2,11 @@
 export default {
 	content: ['./src/**/*.{html,js,svelte,ts}'],
 	theme: {
-		extend: {}
+		extend: {
+			fontFamily: {
+				notosans: ['Noto Sans', 'sans-serif']
+			}
+		}
 	},
 	plugins: [require('@tailwindcss/forms')]
 };
