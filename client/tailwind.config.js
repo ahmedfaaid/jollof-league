@@ -11,7 +11,8 @@ export default {
 				'cadet-blue': '#a3b7ca',
 				'weldon-blue': '#7593af',
 				'queen-blue': '#476f95',
-				'dark-cerulean': '#194a7a'
+				'dark-cerulean': '#194a7a',
+				'eerie-black': '#1b1b1b'
 			}
 		}
 	},
