@@ -34,15 +34,6 @@ impl MongoRepo {
       email: new_user.email,
       phone_number: new_user.phone_number
     };
-    // let inserted_user = self.col.insert_one(&new_doc, None).ok().expect("Error creating user");
-    // let new_user = User {
-    //   _id: inserted_user.inserted_id.as_object_id(),
-    //   first_name: new_doc.first_name,
-    //   last_name: new_doc.last_name,
-    //   email: new_doc.email,
-    //   phone_number: new_doc.phone_number
-    // };
-    // Ok(Json(new_user))
 
     match self.col.insert_one(&new_doc, None) {
       Ok(inserted_result) => {
