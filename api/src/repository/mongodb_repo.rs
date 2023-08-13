@@ -7,7 +7,7 @@ use mongodb::{
   sync::{Client, Collection}
 };
 use rocket::serde::json::Json;
-use crate::models::user_model::User;
+use crate::models::{user_model::User, error_model::ErrorMessage};
 
 pub struct MongoRepo {
   col: Collection<User>
@@ -26,7 +26,7 @@ impl MongoRepo {
     MongoRepo { col }
   }
 
-  pub fn create_user(&self, new_user: User) -> Result<Json<User>, Error> {
+  pub fn create_user(&self, new_user: User) -> Result<Json<User>, Json<ErrorMessage>> {
     let new_doc = User {
       _id: None,
       first_name: new_user.first_name,
@@ -34,15 +34,39 @@ impl MongoRepo {
       email: new_user.email,
       phone_number: new_user.phone_number
     };
-    let inserted_user = self.col.insert_one(&new_doc, None).ok().expect("Error creating user");
-    let new_user = User {
-      _id: inserted_user.inserted_id.as_object_id(),
-      first_name: new_doc.first_name,
-      last_name: new_doc.last_name,
-      email: new_doc.email,
-      phone_number: new_doc.phone_number
-    };
-    Ok(Json(new_user))
+    // let inserted_user = self.col.insert_one(&new_doc, None).ok().expect("Error creating user");
+    // let new_user = User {
+    //   _id: inserted_user.inserted_id.as_object_id(),
+    //   first_name: new_doc.first_name,
+    //   last_name: new_doc.last_name,
+    //   email: new_doc.email,
+    //   phone_number: new_doc.phone_number
+    // };
+    // Ok(Json(new_user))
+
+    match self.col.insert_one(&new_doc, None) {
+      Ok(inserted_result) => {
+        let inserted_id = inserted_result
+          .inserted_id
+          .as_object_id()
+          .ok_or_else(|| Json(ErrorMessage::new("Failed to get inserted id")))?;
+
+        let new_user = User {
+          _id: Some(inserted_id.clone()),
+          first_name: new_doc.first_name,
+          last_name: new_doc.last_name,
+          email: new_doc.email,
+          phone_number: new_doc.phone_number
+        };
+
+        Ok(Json(new_user))
+      }
+
+      Err(_) => {
+        let error_message = ErrorMessage::new("Error creating user");
+        Err(Json(error_message))
+      }
+    }
   }
 
   pub fn get_user(&self, _id: &String) -> Result<User, Error> {
