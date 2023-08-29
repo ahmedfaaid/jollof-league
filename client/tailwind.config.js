@@ -13,6 +13,9 @@ export default {
 				'queen-blue': '#476f95',
 				'dark-cerulean': '#194a7a',
 				'eerie-black': '#1b1b1b'
+			},
+			screens: {
+				'xs': '425px'
 			}
 		}
 	},
