@@ -11,9 +11,12 @@
 	<h1>Privacy Policy for Jollof Fantasy League</h1>
 
 	<p>
-		At Jollof Fantasy League, accessible from https://jollof.ahmedfaaid.com, one of our main
-		priorities is the privacy of our visitors. This Privacy Policy document contains types of
-		information that is collected and recorded by Jollof Fantasy League and how we use it.
+		At Jollof Fantasy League, accessible from <a
+			href="https://jollof.ahmedfaaid.com"
+			class="text-dark-cerulean">https://jollof.ahmedfaaid.com</a
+		>, one of our main priorities is the privacy of our visitors. This Privacy Policy document
+		contains types of information that is collected and recorded by Jollof Fantasy League and how we
+		use it.
 	</p>
 
 	<p>
