@@ -4,5 +4,5 @@
 @tailwind utilities;
 
 body {
-	@apply font-notosans;
+	@apply font-notosans text-eerie-black;
 }
