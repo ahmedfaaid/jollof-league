@@ -2,7 +2,7 @@ version: '3.9'
 
 services:
   mongodb:
-    container_name: jollof_league
+    container_name: jollof-league
     image: mongo:latest
     ports:
       - 27017:27017
