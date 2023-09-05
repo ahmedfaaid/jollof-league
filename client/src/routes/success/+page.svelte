@@ -1,4 +1,4 @@
-<div class="flex items-center justify-center sm:h-[calc(100vh-80px)]">
+<div class="xs:px-8 flex h-[calc(100vh-80px)] items-center justify-center px-2 sm:px-16">
 	<div>
 		<div class="mx-auto w-32">
 			<img src="/undraw_greek_freak_j-2-qb.svg" alt="The Greek Freak illustration" />
