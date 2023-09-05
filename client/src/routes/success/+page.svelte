@@ -9,3 +9,11 @@
 		</p>
 	</div>
 </div>
+
+<svelte:head>
+	<title>Success! - Jollof League</title>
+	<meta
+		name="description"
+		content="You have successfully signed up for the jollof fantasy basketball league."
+	/>
+</svelte:head>

@@ -102,3 +102,8 @@
 		</div>
 	</div>
 </div>
+
+<svelte:head>
+	<title>Join! - Jollof League</title>
+	<meta name="description" content="Sign up to join the jollof fantasy basketball league." />
+</svelte:head>

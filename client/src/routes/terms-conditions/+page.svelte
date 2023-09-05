@@ -107,6 +107,14 @@
 	</p>
 </div>
 
+<svelte:head>
+	<title>Terms & Conditions - Jollof League</title>
+	<meta
+		name="description"
+		content="Terms and conditions for the jollof fantasy basketball league sign up website."
+	/>
+</svelte:head>
+
 <style>
 	h1,
 	h2 {

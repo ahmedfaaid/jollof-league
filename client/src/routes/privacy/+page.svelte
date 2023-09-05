@@ -105,6 +105,14 @@
 	</p>
 </div>
 
+<svelte:head>
+	<title>Privacy Policy - Jollof League</title>
+	<meta
+		name="description"
+		content="Privacy policy for the jollof fantasy basketball league sign up website."
+	/>
+</svelte:head>
+
 <style>
 	h1,
 	h2 {
